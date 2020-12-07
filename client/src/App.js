@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from './actions';
+import Header from './components/layout/Header';
+import Landing from './components/layout/Landing';
+import Dashboard from './components/layout/Dashboard';
 
-const App = () => {
+
+const App = ({ fetchUser }) => {
+
+  useEffect(() => {
+    fetchUser();
+  }, [])
+
   return (
-    <div>
-      Hello, from App.js
+    <div className="container">
+      <BrowserRouter>
+        <div>
+          <Header />
+          <Route exact path='/' component={Landing} />
+          <Route exact path='/dashboard' component={Dashboard} />
+        </div>
+      </BrowserRouter>
     </div>
   )
 }
 
-export default App
+export default connect(null, actions)(App);
