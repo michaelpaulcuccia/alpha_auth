@@ -1,11 +1,20 @@
-import React from 'react'
+import React from 'react';
+import { connect } from 'react-redux';
 
-const Dashboard = () => {
+const Dashboard = props => {
+
+    //console.log(props.auth.firstName)
+
     return (
         <div>
-            DASHBOARD
+            {props && props.auth && props.auth.firstName && props.auth.firstName !== '' ? `Welcome ${props.auth.firstName}` : ''}
         </div>
     )
 }
 
-export default Dashboard
+//connects component to redux - props.auth
+function mapStateToProps({ auth }) {
+    return { auth: auth }
+}
+
+export default connect(mapStateToProps)(Dashboard);

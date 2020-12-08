@@ -9,7 +9,7 @@ class Header extends Component {
             case null:
                 return <li>Loading...</li>
             case false:
-                return <li><a href='/auth/google'>Login With Google</a></li>;
+                return <li><a href='/auth/google'>Login With Google <i className='fab fa-google-plus-g black'></i></a></li>;
             default:
                 return <li><a href='/api/logout'>Logout</a></li>;
         }
@@ -18,15 +18,16 @@ class Header extends Component {
     render() {
 
         //console.log(this.props)
+        //console.log(this.props.auth)
 
         return (
             <nav>
-                <div className="nav-wrapper">
+                <div className="nav-wrapper black">
                     <Link to={this.props.auth ? '/dashboard' : '/'}
                         className="left brand-logo"
                         style={{ marginLeft: '5px' }}
                     >
-                        alpha_auth
+                        home
                     </Link>
                     <ul id="nav-mobile" className="right">
                         {this.renderContent()}
